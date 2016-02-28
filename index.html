@@ -24,6 +24,7 @@
             #map svg {
                 margin-left: auto;
                 margin-right: auto;
+                overflow: visible;
             }
 
             .region_hover {
@@ -109,7 +110,7 @@
             });
 
             aws_map.svg.selectAll('circle').on('click', function(region) {
-              
+
                 var url = "https://console.aws.amazon.com/cloudformation/home?region=" + region.region + "#/stacks/new?stackName=Countly-Community-Edition&templateURL=https://s3.amazonaws.com/countlysetup/aws.template";
 
                 window.open(url,"_self")
@@ -122,9 +123,11 @@
     				 xmlns:xlink="http://www.w3.org/1999/xlink" shape-rendering="crispEdges">
 
       			<pattern id="map_pattern"
-      					 width="8" height="8"
+      					 width="10" height="10"
       					 patternUnits="userSpaceOnUse">
-      						 <line x1="0" y1="8" x2="8" y2="0" style="stroke:#198af3;fill:#198af3;stroke-width:3"/>
+      						 <line x1="0" y1="10" x2="10" y2="0" style="stroke:#198af3;fill:#198af3;stroke-width:3"/>
+                   <polygon points="7,10 10,10 10,7" fill="#198af3"/>
+                   <polygon points="0,2 0,0 2,0" fill="#198af3"/>
       			</pattern>
     		</svg>
 
