@@ -27,7 +27,7 @@
 
         <script type="text/javascript">
 
-        var bubble_map = new Datamap({
+        var aws_map = new Datamap({
             element: document.getElementById("bubbles"),
             geographyConfig: {
                 popupOnHover: false,
@@ -42,33 +42,33 @@
                 "region" : "green"
             }
             });
-            bubble_map.bubbles([
-            {
-                name: 'Ireland',
-                radius: 23,
-                latitude: 11.415,
-                longitude: 165.1619,
-                fillKey: 'region',
-            },
-            {
-                name: 'Ireland',
-                radius: 23,
-                latitude: 11.415,
-                longitude: 45.1619,
-                fillKey: 'region',
-            },{
-                name: 'Ireland',
-                radius: 23,
-                latitude: 11.415,
-                longitude: 123.1619,
-                fillKey: 'region',
-            }
-        ], {
-            popupTemplate: function(geo, data) {
-            return '<div class="hoverinfo">test:' + data.name + '
-            rydrdg ' + data.name + ' dfgdf '  + data.name + ''
-            }
-        });
+
+          aws_map.bubbles([
+                  {
+                      name: 'Ireland',
+                      radius: 23,
+                      latitude: 11.415,
+                      longitude: 165.1619,
+                      fillKey: 'region',
+                  },
+                  {
+                      name: 'Ireland',
+                      radius: 23,
+                      latitude: 11.415,
+                      longitude: 45.1619,
+                      fillKey: 'region',
+                  },{
+                      name: 'Ireland',
+                      radius: 23,
+                      latitude: 11.415,
+                      longitude: 123.1619,
+                      fillKey: 'region',
+                  }
+          ], {
+                  popupTemplate: function(geo, data) {
+                      return '<div class="hoverinfo">test:' + data.name + '</div>';
+                  }
+          });
 
         </script>
 
