@@ -11,10 +11,26 @@
 
         <style>
 
-            legend div {
-                margin-top: 50px;
-                margin-bottom: 50px;
-                margin-left: 10px;
+            body {
+                font-family : sans-serif;
+            }
+
+            #map {
+                width : 100%;
+                height : 500px;
+                text-align : center;
+            }
+
+            #map svg {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .region_hover {
+                background-color: white;
+                padding : 10px;
+                border : 1px solid #E6E6E6;
+                border-radius: 2px;
             }
 
         </style>
@@ -29,50 +45,88 @@
 
         <script type="text/javascript">
 
+        var map_width  = 700; //document.body.clientWidth;
+        var map_height = 500; //document.body.clientHeight;
+
         var aws_map = new Datamap({
             element: document.getElementById("map"),
+            width      : map_width,
+            height     : map_height,
+            projection : 'mercator',
             geographyConfig: {
                 popupOnHover: false,
-                highlightOnHover: false
+                highlightOnHover: false,
+                borderWidth: 1,
+                borderColor: '#E6E6E6',
             },
             fills: {
-                defaultFill: '#ABDDA4',
+                defaultFill: 'url(#map_pattern)',
                 "useast1" : 'blue',
                 "uswest2" : 'blue',
                 "apsoutheast2" : 'blue',
                 "euwest1" : 'blue',
-                "region" : "green"
+                "region" : "#0FB654"
             }
             });
 
-          aws_map.bubbles([
+            aws_map.bubbles([
                   {
-                      name: 'Ireland',
+                      city: 'Ireland',
+                      region : "eu-west-1",
                       radius: 23,
-                      latitude: 11.415,
-                      longitude: 165.1619,
+                      latitude: 53.4097973,
+                      longitude: -10.5748834,
                       fillKey: 'region',
                   },
                   {
-                      name: 'Ireland',
+                      city: 'N. Virginia',
+                      region : "us-east-1",
                       radius: 23,
-                      latitude: 11.415,
-                      longitude: 45.1619,
+                      latitude: 37.4784129,
+                      longitude: -76.461832,
                       fillKey: 'region',
-                  },{
-                      name: 'Ireland',
+                  },
+                  {
+                      city: 'Oregon',
+                      region : "us-west-2",
                       radius: 23,
-                      latitude: 11.415,
-                      longitude: 123.1619,
+                      latitude: 44.123896,
+                      longitude: -122.781555,
+                      fillKey: 'region',
+                  },
+                  {
+                      city: 'Sydney',
+                      region : "ap-southeast-2",
+                      radius: 23,
+                      latitude: -33.7945148,
+                      longitude: 150.3619664,
                       fillKey: 'region',
                   }
-          ], {
-                  popupTemplate: function(geo, data) {
-                      return '<div class="hoverinfo">test:' + data.name + '</div>';
-                  }
-          });
+            ], {
+                    popupTemplate: function(geo, data) {
+                        return '<div class="region_hover">' + data.city + '</div>';
+                    }
+            });
+
+            aws_map.svg.selectAll('circle').on('click', function(region) {
+              
+                var url = "https://console.aws.amazon.com/cloudformation/home?region=" + region.region + "#/stacks/new?stackName=Countly-Community-Edition&templateURL=https://s3.amazonaws.com/countlysetup/aws.template";
+
+                window.open(url,"_self")
+
+            });
 
         </script>
+
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+    				 xmlns:xlink="http://www.w3.org/1999/xlink" shape-rendering="crispEdges">
+
+      			<pattern id="map_pattern"
+      					 width="8" height="8"
+      					 patternUnits="userSpaceOnUse">
+      						 <line x1="0" y1="8" x2="8" y2="0" style="stroke:#198af3;fill:#198af3;stroke-width:3"/>
+      			</pattern>
+    		</svg>
 
     </body>
 
