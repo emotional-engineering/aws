@@ -133,14 +133,8 @@
             });
 
             setTimeout(function(){
-                
-                console.log('==== ===');
-                console.log(aws_map.svg.selectAll('circle'));
-                
-                aws_map.svg.selectAll('circle').on('click', function(region) {
-
-                    console.log("-- click --");
-                    
+                              
+                aws_map.svg.selectAll('circle').on('click', function(region) {                   
     
                     var url = "https://console.aws.amazon.com/cloudformation/home?region=" + region.region + "#/stacks/new?stackName=Countly-Community-Edition&templateURL=https://s3.amazonaws.com/countlysetup/aws.template";
     
