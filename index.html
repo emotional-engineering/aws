@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="chrome=1">
         <title>Countly AWS</title>
 
-        <script type="text/javascript" src="http:////d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
         <script type="text/javascript" src="javascripts/topojson.min.js"></script>
         <script type="text/javascript" src="javascripts/datamaps.world.min.js"></script>
 
@@ -13,6 +13,17 @@
 
             body {
                 font-family : sans-serif;
+            }
+            
+            .sign {
+                display : inline-block;
+                font-family : Arial;
+                font-size : 18px;
+                width : 100%;
+                text-align : center;
+                font-family : Lato-Regular;
+                margin-bottom : 10px;
+                margin-top : 10px;
             }
 
             #map {
@@ -32,6 +43,8 @@
                 padding : 10px;
                 border : 1px solid #E6E6E6;
                 border-radius: 2px;
+                position : relative;
+                top : -40px;
             }
 
         </style>
@@ -40,37 +53,15 @@
 
     <body>
 
+        <span class="sign">&#171;Data flow like water. Become like data my friend.&#187;</span>
+
         <div id="map">
 
         </div>
 
         <script type="text/javascript">
-
-        var map_width  = 700; //document.body.clientWidth;
-        var map_height = 500; //document.body.clientHeight;
-
-        var aws_map = new Datamap({
-            element: document.getElementById("map"),
-            width      : map_width,
-            height     : map_height,
-            projection : 'mercator',
-            geographyConfig: {
-                popupOnHover: false,
-                highlightOnHover: false,
-                borderWidth: 1,
-                borderColor: '#E6E6E6',
-            },
-            fills: {
-                defaultFill: 'url(#map_pattern)',
-                "useast1" : 'blue',
-                "uswest2" : 'blue',
-                "apsoutheast2" : 'blue',
-                "euwest1" : 'blue',
-                "region" : "#0FB654"
-            }
-            });
-
-            aws_map.bubbles([
+        
+        var data_centers = [
                   {
                       city: 'Ireland',
                       region : "eu-west-1",
@@ -103,10 +94,42 @@
                       longitude: 150.3619664,
                       fillKey: 'region',
                   }
-            ], {
+            ];
+
+        var map_width  = 700; //document.body.clientWidth;
+        var map_height = 500; //document.body.clientHeight;
+
+        var aws_map = new Datamap({
+            element: document.getElementById("map"),
+            width      : map_width,
+            height     : map_height,
+            projection : 'mercator',
+            geographyConfig: {
+                popupOnHover: false,
+                highlightOnHover: false,
+                borderWidth: 1,
+                borderColor: '#E6E6E6',
+            },
+            fills: {
+                defaultFill: 'url(#map_pattern)',
+                "useast1" : 'blue',
+                "uswest2" : 'blue',
+                "apsoutheast2" : 'blue',
+                "euwest1" : 'blue',
+                "region" : "#0FB654"
+            }
+            });
+
+            aws_map.bubbles(data_centers, {
                     popupTemplate: function(geo, data) {
                         return '<div class="region_hover">' + data.city + '</div>';
-                    }
+                    },
+                    highlightFillColor: '#00C652',
+                    highlightBorderColor: '#141821',
+                    highlightBorderWidth: 2,
+                    highlightBorderOpacity: 1,
+                    highlightFillOpacity: 0.85,
+                    exitDelay: 100, 
             });
 
             aws_map.svg.selectAll('circle').on('click', function(region) {
