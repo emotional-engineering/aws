@@ -11,8 +11,30 @@
 
         <style>
 
+            @font-face {
+                font-family: Lato-Light;
+                font-weight: normal;
+                font-style: normal;
+            
+                -webkit-font-smoothing: antialiased;
+                speak: none;
+                font-style: normal;
+                font-weight: normal;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                text-rendering: optimizeLegibility;
+            
+                /*src: url(../fonts/Lato-Light/Lato-Light.eot);*/
+                src: local("Lato-Light"), url("./Lato-Light.ttf") format("truetype")/*,
+                url('../fonts/Lato-Light/Lato-Light.woff2') format('woff2'),
+                url('../fonts/Lato-Light/Lato-Light.woff') format('woff')*/
+            }
+
             body {
-                font-family : sans-serif;
+                font-family : Lato-Light;
             }
             
             .sign {
@@ -21,7 +43,7 @@
                 font-size : 18px;
                 width : 100%;
                 text-align : center;
-                font-family : Lato-Regular;
+                font-family : Lato-Light;
                 margin-bottom : 10px;
                 margin-top : 10px;
             }
@@ -53,7 +75,7 @@
 
     <body>
 
-        <span class="sign">&#171;Data flow like water. Become like data my friend.&#187;</span>
+        <span class="sign">&#171;Data flow like water. Become like data my friend&#187;</span>
 
         <div id="map">
 
