@@ -156,19 +156,19 @@
                     exitDelay: 100, 
                 });
                 
-            }, 200);            
-
-            setTimeout(function(){
+                setTimeout(function(){
                               
-                aws_map.svg.selectAll('circle').on('click', function(region) {                   
-    
-                    var url = "https://console.aws.amazon.com/cloudformation/home?region=" + region.region + "#/stacks/new?stackName=Countly-Community-Edition&templateURL=https://s3.amazonaws.com/countlysetup/aws.template";
-    
-                    window.open(url,"_self")
-    
-                });
+                    aws_map.svg.selectAll('circle').on('click', function(region) {                   
+        
+                        var url = "https://console.aws.amazon.com/cloudformation/home?region=" + region.region + "#/stacks/new?stackName=Countly-Community-Edition&templateURL=https://s3.amazonaws.com/countlysetup/aws.template";
+        
+                        window.open(url,"_self")
+        
+                    });
+                    
+                }, 1000);
                 
-            }, 1000);
+            }, 500);   
             
 
         </script>
