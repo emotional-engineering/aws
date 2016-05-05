@@ -142,7 +142,9 @@
             }
             });
 
-            aws_map.bubbles(data_centers, {
+            setTimeout(function(){
+                              
+                aws_map.bubbles(data_centers, {
                     popupTemplate: function(geo, data) {
                         return '<div class="region_hover">' + data.city + '</div>';
                     },
@@ -152,7 +154,9 @@
                     highlightBorderOpacity: 1,
                     highlightFillOpacity: 0.85,
                     exitDelay: 100, 
-            });
+                });
+                
+            }, 200);            
 
             setTimeout(function(){
                               
