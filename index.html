@@ -118,59 +118,61 @@
                   }
             ];
 
-        var map_width  = 700; //document.body.clientWidth;
-        var map_height = 500; //document.body.clientHeight;
+        window.onload=function(){
 
-        var aws_map = new Datamap({
-            element: document.getElementById("map"),
-            width      : map_width,
-            height     : map_height,
-            projection : 'mercator',
-            geographyConfig: {
-                popupOnHover: false,
-                highlightOnHover: false,
-                borderWidth: 1,
-                borderColor: '#E6E6E6',
-            },
-            fills: {
-                defaultFill: 'url(#map_pattern)',
-                "useast1" : 'blue',
-                "uswest2" : 'blue',
-                "apsoutheast2" : 'blue',
-                "euwest1" : 'blue',
-                "region" : "#0FB654"
-            }
-            });
-
-            setTimeout(function(){
-                              
-                aws_map.bubbles(data_centers, {
-                    popupTemplate: function(geo, data) {
-                        return '<div class="region_hover">' + data.city + '</div>';
-                    },
-                    highlightFillColor: '#00C652',
-                    highlightBorderColor: '#141821',
-                    highlightBorderWidth: 2,
-                    highlightBorderOpacity: 1,
-                    highlightFillOpacity: 0.85,
-                    exitDelay: 100, 
+            var map_width  = 700; //document.body.clientWidth;
+            var map_height = 500; //document.body.clientHeight;
+    
+            var aws_map = new Datamap({
+                element: document.getElementById("map"),
+                width      : map_width,
+                height     : map_height,
+                projection : 'mercator',
+                geographyConfig: {
+                    popupOnHover: false,
+                    highlightOnHover: false,
+                    borderWidth: 1,
+                    borderColor: '#E6E6E6',
+                },
+                fills: {
+                    defaultFill: 'url(#map_pattern)',
+                    "useast1" : 'blue',
+                    "uswest2" : 'blue',
+                    "apsoutheast2" : 'blue',
+                    "euwest1" : 'blue',
+                    "region" : "#0FB654"
+                }
                 });
-                
+    
                 setTimeout(function(){
-                              
-                    aws_map.svg.selectAll('circle').on('click', function(region) {                   
-        
-                        var url = "https://console.aws.amazon.com/cloudformation/home?region=" + region.region + "#/stacks/new?stackName=Countly-Community-Edition&templateURL=https://s3.amazonaws.com/countlysetup/aws.template";
-        
-                        window.open(url,"_self")
-        
+                                  
+                    aws_map.bubbles(data_centers, {
+                        popupTemplate: function(geo, data) {
+                            return '<div class="region_hover">' + data.city + '</div>';
+                        },
+                        highlightFillColor: '#00C652',
+                        highlightBorderColor: '#141821',
+                        highlightBorderWidth: 2,
+                        highlightBorderOpacity: 1,
+                        highlightFillOpacity: 0.85,
+                        exitDelay: 100, 
                     });
                     
-                }, 1000);
-                
-            }, 500);   
+                    setTimeout(function(){
+                                  
+                        aws_map.svg.selectAll('circle').on('click', function(region) {                   
             
-
+                            var url = "https://console.aws.amazon.com/cloudformation/home?region=" + region.region + "#/stacks/new?stackName=Countly-Community-Edition&templateURL=https://s3.amazonaws.com/countlysetup/aws.template";
+            
+                            window.open(url,"_self")
+            
+                        });
+                        
+                    }, 1000);
+                    
+                }, 500);               
+        }        
+        
         </script>
 
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
